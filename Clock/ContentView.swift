@@ -10,130 +10,106 @@ import CoreData
 
 struct ContentView: View {
     
+    @State private var selectedDate = Date()
+    
+    var formattedTime: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.string(from: selectedDate)
+    }
+    
     var body: some View {
-      
+        
         VStack(spacing: 5) {
-            Text("Time is 13:17:02")
+            Text("Time is \(formattedTime)")
             
             Circle()
                 .foregroundColor(.yellow)
                 .frame(width: 56, height: 56)
-                .padding(10)
+                .padding(5)
             
             HStack(spacing: 5) {
-                Rectangle()
-                    .foregroundColor(.red)
-                    .frame(width: 74, height: 32)
+                ColoredRectangle(color: .lightRed, width: 74, height: 32)
                     .padding(5)
-                Rectangle()
-                    .foregroundColor(.red)
-                    .frame(width: 74, height: 32)
+                ColoredRectangle(color: .lightRed, width: 74, height: 32)
                     .padding(5)
-                Rectangle()
-                    .foregroundColor(.red)
-                    .frame(width: 74, height: 32)
+                ColoredRectangle(color: .lightRed, width: 74, height: 32)
                     .padding(5)
-                Rectangle()
-                    .foregroundColor(.red)
-                    .frame(width: 74, height: 32)
+                ColoredRectangle(color: .lightRed, width: 74, height: 32)
                     .padding(5)
-                
-            }
-            HStack(spacing: 5) {
-                Rectangle()
-                    .foregroundColor(.red)
-                    .frame(width: 74, height: 32)
-                    .padding(5)
-                Rectangle()
-                    .foregroundColor(.red)
-                    .frame(width: 74, height: 32)
-                    .padding(5)
-                Rectangle()
-                    .foregroundColor(.red)
-                    .frame(width: 74, height: 32)
-                    .padding(5)
-                Rectangle()
-                    .foregroundColor(.red)
-                    .frame(width: 74, height: 32)
-                    .padding(5)
-                
             }
             
-            HStack(spacing: 5){
-                Rectangle()
-                    .foregroundColor(.yellow)
-                    .frame(width: 20, height: 32)
-                
-                Rectangle()
-                    .foregroundColor(.yellow)
-                    .frame(width: 20, height: 32)
-                
-                Rectangle()
-                    .foregroundColor(.red)
-                    .frame(width: 20, height: 32)
-                
-                Rectangle()
-                    .foregroundColor(.yellow)
-                    .frame(width: 20, height: 32)
-                
-                Rectangle()
-                    .foregroundColor(.yellow)
-                    .frame(width: 20, height: 32)
-                
-                Rectangle()
-                    .foregroundColor(.red)
-                    .frame(width: 20, height: 32)
-                
-                Rectangle()
-                    .foregroundColor(.yellow)
-                    .frame(width: 20, height: 32)
-                
-                Rectangle()
-                    .foregroundColor(.yellow)
-                    .frame(width: 20, height: 32)
-                
-                Rectangle()
-                    .foregroundColor(.red)
-                    .frame(width: 20, height: 32)
-                
-                Rectangle()
-                    .foregroundColor(.yellow)
-                    .frame(width: 20, height: 32)
-                
-//                Rectangle()
-//                    .foregroundColor(.yellow)
-//                    .frame(width: 20, height: 32)
-            }
             HStack(spacing: 5) {
-                Rectangle()
-                    .foregroundColor(.yellow)
-                    .frame(width: 74, height: 32)
+                ColoredRectangle(color: .lightRed, width: 74, height: 32)
                     .padding(5)
-                Rectangle()
-                    .foregroundColor(.yellow)
-                    .frame(width: 74, height: 32)
+                ColoredRectangle(color: .lightRed, width: 74, height: 32)
                     .padding(5)
-                Rectangle()
-                    .foregroundColor(.yellow)
-                    .frame(width: 74, height: 32)
+                ColoredRectangle(color: .lightRed, width: 74, height: 32)
                     .padding(5)
-                Rectangle()
-                    .foregroundColor(.yellow)
-                    .frame(width: 74, height: 32)
+                ColoredRectangle(color: .lightRed, width: 74, height: 32)
                     .padding(5)
-                
             }
+            
             HStack(spacing: 5) {
-                    Text("Insert Time")
-                    .padding(20)
-                Spacer()
-                    Text("09:41")
-                    .padding(20)
-                
+                HStack(spacing: 5) {
+                    ColoredRectangle(color: .lightYellow, width: 21, height: 32)
+                    ColoredRectangle(color: .lightYellow, width: 21, height: 32)
+                    ColoredRectangle(color: .lightRed, width: 21, height: 32)
+                    ColoredRectangle(color: .lightYellow, width: 21, height: 32)
+                    ColoredRectangle(color: .lightYellow, width: 21, height: 32)
+                    ColoredRectangle(color: .lightRed, width: 21, height: 32)
                 }
-            Spacer()
+                .padding(5)
+                
+                HStack(spacing: 5) {
+                    ColoredRectangle(color: .lightYellow, width: 21, height: 32)
+                    ColoredRectangle(color: .lightYellow, width: 21, height: 32)
+                    ColoredRectangle(color: .lightRed, width: 21, height: 32)
+                    ColoredRectangle(color: .lightYellow, width: 21, height: 32)
+                    ColoredRectangle(color: .lightYellow, width: 21, height: 32)
+                }
+                .padding(5)
             }
+            HStack(spacing: 5) {
+                ColoredRectangle(color: .lightYellow, width: 74, height: 32)
+                    .padding(5)
+                ColoredRectangle(color: .lightYellow, width: 74, height: 32)
+                    .padding(5)
+                ColoredRectangle(color: .lightYellow, width: 74, height: 32)
+                    .padding(5)
+                ColoredRectangle(color: .lightYellow, width: 74, height: 32)
+                    .padding(5)
+            }
+            
+            HStack(spacing: 5) {
+                DatePicker(
+                    "Insert Time",
+                    selection: $selectedDate,
+                    displayedComponents: [.hourAndMinute]
+                )
+                .datePickerStyle(.automatic)
+                .padding(20)
+                
+            }
+            Spacer()
         }
+    }
+    
+    struct ColoredRectangle: View {
+        var color: Color
+        var width: CGFloat
+        var height: CGFloat
+        
+        var body: some View {
+            Rectangle()
+                .foregroundColor(color)
+                .frame(width: width, height: height)
+        }
+    }
+    
+    func updateColors() {
+    
+    }
     
     struct ContentView_Previews: PreviewProvider {
         static var previews: some View {
